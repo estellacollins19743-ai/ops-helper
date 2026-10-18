@@ -1,9 +1,9 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import json, os
+import json
 
 class H(BaseHTTPRequestHandler):
     def do_GET(self):
-        body = json.dumps({k: v for k, v in os.environ.items()}, sort_keys=True).encode()
+        body = json.dumps({"ok": True, "service": "ops-helper"}).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
